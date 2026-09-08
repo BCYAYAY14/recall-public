@@ -1,6 +1,6 @@
 # recall-public
 ## Description
-Recall is a Mac OS and iOS study app, combining docs with flashcards. The files included here are the Mac OS app, which should be dragged into applications, iOS ipa, which must be SIDELOADED (through SideStore, AltStore etc), and the supabase setup sql.
+Recall is a Mac OS and iOS study app, combining docs with flashcards. The files included here are the Mac OS dmg, which should be dragged into applications, iOS ipa, which must be SIDELOADED (through SideStore, AltStore etc), and the supabase setup sql.
 
 ## Instructions
 1. Download one/both of the apps.
