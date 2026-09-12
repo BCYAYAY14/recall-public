@@ -9,6 +9,7 @@ create table if not exists folder (
   created_at  timestamptz not null,
   updated_at  timestamptz not null,
   deleted_at  timestamptz,
+  exam_at     timestamptz,
   synced_seq  bigint not null default nextval('sync_seq')
 );
 
@@ -22,8 +23,12 @@ create table if not exists notebook (
   created_at  timestamptz not null,
   updated_at  timestamptz not null,
   deleted_at  timestamptz,
+  exam_at     timestamptz,
   synced_seq  bigint not null default nextval('sync_seq')
 );
+
+alter table folder   add column if not exists exam_at timestamptz;
+alter table notebook add column if not exists exam_at timestamptz;
 
 create table if not exists note (
   id            uuid primary key,
