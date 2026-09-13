@@ -24,11 +24,15 @@ create table if not exists notebook (
   updated_at  timestamptz not null,
   deleted_at  timestamptz,
   exam_at     timestamptz,
+  style       text,
   synced_seq  bigint not null default nextval('sync_seq')
 );
 
 alter table folder   add column if not exists exam_at timestamptz;
 alter table notebook add column if not exists exam_at timestamptz;
+-- A doc's own text styles and spelling language (0.9.5, 0.9.6). Until this
+-- runs the apps keep a doc's styles on the device that set them.
+alter table notebook add column if not exists style text;
 
 create table if not exists note (
   id            uuid primary key,
