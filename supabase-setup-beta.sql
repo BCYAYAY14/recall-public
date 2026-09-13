@@ -343,6 +343,93 @@ end $$;
 
 grant execute on function purge_tombstones(int) to authenticated;
 
+create table if not exists share (
+  id           uuid primary key default gen_random_uuid(),
+  user_id      uuid not null default auth.uid(),
+  notebook_id  uuid not null references notebook(id),
+  token        text not null unique,
+  created_at   timestamptz not null default now(),
+  revoked_at   timestamptz,
+  constraint share_token_long_enough check (char_length(token) >= 32)
+);
+
+create index if not exists idx_share_notebook on share(notebook_id);
+
+alter table share enable row level security;
+drop policy if exists "own rows" on share;
+create policy "own rows" on share for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
+
+grant select, insert, update on share to authenticated;
+revoke delete on share from authenticated;
+
+create or replace function shared_doc(share_token text)
+returns jsonb
+language plpgsql
+stable
+security definer
+set search_path = public
+as $$
+declare
+  s record;
+  d record;
+begin
+  select notebook_id, user_id into s from share
+   where token = share_token and revoked_at is null
+   limit 1;
+  if not found then return null; end if;
+
+  select id, name, emoji, style into d from notebook
+   where id = s.notebook_id and user_id = s.user_id and deleted_at is null;
+  if not found then return null; end if;
+
+  return jsonb_build_object(
+    'notebook', jsonb_build_object('id', d.id, 'name', d.name, 'emoji', d.emoji, 'style', d.style),
+    'owner', s.user_id,
+    'notes', (select coalesce(jsonb_agg(to_jsonb(n) - 'user_id' - 'synced_seq'), '[]'::jsonb)
+                from note n
+               where n.notebook_id = d.id and n.user_id = s.user_id and n.deleted_at is null),
+    'cards', (select coalesce(jsonb_agg(jsonb_build_object(
+                  'id', c.id, 'note_id', c.note_id, 'cloze_ordinal', c.cloze_ordinal,
+                  'suspended', c.suspended, 'detached', c.detached)), '[]'::jsonb)
+                from card c join note n on n.id = c.note_id
+               where n.notebook_id = d.id and n.deleted_at is null
+                 and c.user_id = s.user_id and c.deleted_at is null),
+    'media', (select coalesce(jsonb_agg(to_jsonb(m) - 'user_id' - 'synced_seq'), '[]'::jsonb)
+                from media m join note n on n.id = m.note_id
+               where n.notebook_id = d.id and n.deleted_at is null
+                 and m.user_id = s.user_id and m.deleted_at is null),
+    'occlusion', (select coalesce(jsonb_agg(to_jsonb(o) - 'user_id' - 'synced_seq'), '[]'::jsonb)
+                from occlusion o join note n on n.id = o.note_id
+               where n.notebook_id = d.id and n.deleted_at is null
+                 and o.user_id = s.user_id and o.deleted_at is null)
+  );
+end $$;
+
+revoke all on function shared_doc(text) from public;
+grant execute on function shared_doc(text) to anon, authenticated;
+
+create or replace function media_object_is_shared(object_name text)
+returns boolean
+language sql
+stable
+security definer
+set search_path = public
+as $$
+  select exists (
+    select 1
+      from media m
+      join note n  on n.id = m.note_id and n.deleted_at is null
+      join share s on s.notebook_id = n.notebook_id and s.user_id = m.user_id
+                  and s.revoked_at is null
+     where m.deleted_at is null
+       and m.user_id::text = split_part(object_name, '/', 1)
+       and m.rel_path = substr(object_name, char_length(split_part(object_name, '/', 1)) + 2)
+  );
+$$;
+
+revoke all on function media_object_is_shared(text) from public;
+grant execute on function media_object_is_shared(text) to anon, authenticated;
+
 insert into storage.buckets (id, name, public)
 values ('media', 'media', false)
 on conflict (id) do nothing;
@@ -351,6 +438,10 @@ drop policy if exists "own objects" on storage.objects;
 create policy "own objects" on storage.objects for all
   using      (bucket_id = 'media' and auth.uid()::text = (storage.foldername(name))[1])
   with check (bucket_id = 'media' and auth.uid()::text = (storage.foldername(name))[1]);
+
+drop policy if exists "shared objects" on storage.objects;
+create policy "shared objects" on storage.objects for select
+  using (bucket_id = 'media' and public.media_object_is_shared(name));
 
 select c.relname                                             as table_name,
        c.relrowsecurity                                      as rls,
@@ -364,6 +455,6 @@ from pg_class c
 join pg_namespace n on n.oid = c.relnamespace
 join pg_attribute a on a.attrelid = c.oid and a.attnum > 0 and not a.attisdropped
 where n.nspname = 'public'
-  and c.relname in ('folder','notebook','note','card','grade_event','media','occlusion','dictionary','kv')
+  and c.relname in ('folder','notebook','note','card','grade_event','media','occlusion','dictionary','kv','share')
 group by c.relname, c.relrowsecurity, c.oid
 order by c.relname;
