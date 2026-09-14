@@ -64,6 +64,21 @@ create table if not exists dictionary (
   synced_seq  bigint not null default nextval('sync_seq')
 );
 
+-- Custom fonts (owner 2026-09-13). One row per font FILE; the bytes are in
+-- the media bucket at <user-id>/font-<sha>.<ext>, under the same policy.
+create table if not exists font (
+  id          uuid primary key,
+  user_id     uuid not null default auth.uid(),
+  family      text not null,
+  file_name   text not null,
+  rel_path    text not null,
+  bytes_sha   text not null,
+  created_at  timestamptz not null,
+  updated_at  timestamptz not null,
+  deleted_at  timestamptz,
+  synced_seq  bigint not null default nextval('sync_seq')
+);
+
 create table if not exists card (
   id              uuid primary key,
   user_id         uuid not null default auth.uid(),
@@ -175,6 +190,7 @@ drop trigger if exists trg_sync on media;
 drop trigger if exists trg_sync on occlusion;
 drop trigger if exists trg_sync on grade_event;
 drop trigger if exists trg_sync on dictionary;
+drop trigger if exists trg_sync on font;
 
 create trigger trg_sync before insert or update on folder
   for each row execute function sync_stamp_lww();
@@ -191,6 +207,8 @@ create trigger trg_sync before insert or update on occlusion
 create trigger trg_sync before insert or update on grade_event
   for each row execute function sync_stamp();
 create trigger trg_sync before insert or update on dictionary
+  for each row execute function sync_stamp_lww();
+create trigger trg_sync before insert or update on font
   for each row execute function sync_stamp_lww();
 
 create or replace function pull_since(marks jsonb, page int default 1000)
@@ -253,6 +271,7 @@ create index if not exists idx_card_sync        on card(user_id, synced_seq);
 create index if not exists idx_media_sync       on media(user_id, synced_seq);
 create index if not exists idx_occlusion_sync   on occlusion(user_id, synced_seq);
 create index if not exists idx_dictionary_sync  on dictionary(user_id, synced_seq);
+create index if not exists idx_font_sync        on font(user_id, synced_seq);
 create index if not exists idx_grade_event_sync on grade_event(user_id, synced_seq);
 
 grant usage on schema public to anon, authenticated;
@@ -266,9 +285,10 @@ grant select, insert, update on grade_event to authenticated;
 grant select, insert, update on media       to authenticated;
 grant select, insert, update on occlusion   to authenticated;
 grant select, insert, update on dictionary  to authenticated;
+grant select, insert, update on font        to authenticated;
 grant select, insert, update on kv          to authenticated;
 
-revoke delete on folder, notebook, note, card, grade_event, media, occlusion, dictionary, kv
+revoke delete on folder, notebook, note, card, grade_event, media, occlusion, dictionary, font, kv
   from authenticated;
 
 grant select on kv to anon;
@@ -281,6 +301,7 @@ alter table grade_event enable row level security;
 alter table media       enable row level security;
 alter table occlusion   enable row level security;
 alter table dictionary  enable row level security;
+alter table font        enable row level security;
 alter table kv          enable row level security;
 
 drop policy if exists "own rows" on folder;
@@ -291,6 +312,7 @@ drop policy if exists "own rows" on grade_event;
 drop policy if exists "own rows" on media;
 drop policy if exists "own rows" on occlusion;
 drop policy if exists "own rows" on dictionary;
+drop policy if exists "own rows" on font;
 drop policy if exists "own rows" on kv;
 
 create policy "own rows" on folder      for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
@@ -300,6 +322,7 @@ create policy "own rows" on card        for all using (auth.uid() = user_id) wit
 create policy "own rows" on grade_event for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
 create policy "own rows" on media       for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
 create policy "own rows" on dictionary  for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
+create policy "own rows" on font        for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
 create policy "own rows" on occlusion   for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
 create policy "own rows" on kv          for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
 
@@ -327,7 +350,7 @@ declare
   n bigint;
 begin
   foreach t in array array['note','card','notebook','folder',
-                           'media','occlusion','dictionary']
+                           'media','occlusion','dictionary','font']
   loop
     execute format(
       'delete from %I where user_id = auth.uid()
@@ -455,6 +478,6 @@ from pg_class c
 join pg_namespace n on n.oid = c.relnamespace
 join pg_attribute a on a.attrelid = c.oid and a.attnum > 0 and not a.attisdropped
 where n.nspname = 'public'
-  and c.relname in ('folder','notebook','note','card','grade_event','media','occlusion','dictionary','kv','share')
+  and c.relname in ('folder','notebook','note','card','grade_event','media','occlusion','dictionary','font','kv','share')
 group by c.relname, c.relrowsecurity, c.oid
 order by c.relname;
