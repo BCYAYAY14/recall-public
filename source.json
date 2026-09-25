@@ -38,6 +38,38 @@
       "versionDescription": "0.12.1 (43): cloudflare-wip at 9298e1c plus 114 uncommitted paths",
       "downloadURL": "https://github.com/BCYAYAY14/recall-public/releases/download/ipa-0.12.1/Recall-0.12.1.ipa",
       "size": 12351455
+    },
+    {
+      "name": "Recall CF8",
+      "subtitle": "The Cloudflare test build",
+      "localizedDescription": "The Cloudflare sync test build: a Debug build with its own synthetic library, paired to the development backend. It has no widgets, no share sheet and no Supabase, and it never touches Recall's library.",
+      "bundleIdentifier": "com.brian.recall.ios.cfalpha",
+      "developerName": "BCYAYAY14",
+      "iconURL": "https://raw.githubusercontent.com/BCYAYAY14/recall-public/main/icon.png",
+      "category": "education",
+      "versions": [
+        {
+          "version": "0.12.1",
+          "buildVersion": "43",
+          "date": "2026-09-25T00:30:26Z",
+          "localizedDescription": "0.12.1 (43): cloudflare-wip at 9298e1c plus 115 uncommitted paths",
+          "downloadURL": "https://github.com/BCYAYAY14/recall-public/releases/download/cf8-0.12.1/Recall-CF8-0.12.1.ipa",
+          "size": 19284241,
+          "sha256": "265263f2063b9213f5891e8607527ba8989284a26bda7b47a3e92621d05a3e94",
+          "minOSVersion": "17.0"
+        }
+      ],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {
+          "NSCameraUsageDescription": "Recall reads a page you scan into a doc."
+        }
+      },
+      "version": "0.12.1",
+      "versionDate": "2026-09-25T00:30:26Z",
+      "versionDescription": "0.12.1 (43): cloudflare-wip at 9298e1c plus 115 uncommitted paths",
+      "downloadURL": "https://github.com/BCYAYAY14/recall-public/releases/download/cf8-0.12.1/Recall-CF8-0.12.1.ipa",
+      "size": 19284241
     }
   ],
   "news": []
