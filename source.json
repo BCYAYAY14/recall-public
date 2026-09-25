@@ -1,0 +1,44 @@
+{
+  "name": "Recall",
+  "identifier": "com.brian.recall.source",
+  "subtitle": "Recall's iPhone builds",
+  "iconURL": "https://raw.githubusercontent.com/BCYAYAY14/recall-public/main/icon.png",
+  "website": "https://github.com/BCYAYAY14/recall-public",
+  "apps": [
+    {
+      "name": "Recall",
+      "bundleIdentifier": "com.brian.recall.ios",
+      "developerName": "BCYAYAY14",
+      "subtitle": "Notes that yield flashcards",
+      "localizedDescription": "A note app: a line with :: becomes an FSRS flashcard. Personal builds for one user.",
+      "iconURL": "https://raw.githubusercontent.com/BCYAYAY14/recall-public/main/icon.png",
+      "category": "education",
+      "versions": [
+        {
+          "version": "0.12.1",
+          "buildVersion": "43",
+          "date": "2026-09-25T00:22:11Z",
+          "localizedDescription": "0.12.1 (43): cloudflare-wip at 9298e1c plus 114 uncommitted paths",
+          "downloadURL": "https://github.com/BCYAYAY14/recall-public/releases/download/ipa-0.12.1/Recall-0.12.1.ipa",
+          "size": 12351455,
+          "sha256": "bc95358f81451417347f994f09a34070a9bc8bd7c0a61c88e756730f2e2de544",
+          "minOSVersion": "17.0"
+        }
+      ],
+      "appPermissions": {
+        "entitlements": [
+          "com.apple.security.application-groups"
+        ],
+        "privacy": {
+          "NSCameraUsageDescription": "Recall reads a page you scan into a doc."
+        }
+      },
+      "version": "0.12.1",
+      "versionDate": "2026-09-25T00:22:11Z",
+      "versionDescription": "0.12.1 (43): cloudflare-wip at 9298e1c plus 114 uncommitted paths",
+      "downloadURL": "https://github.com/BCYAYAY14/recall-public/releases/download/ipa-0.12.1/Recall-0.12.1.ipa",
+      "size": 12351455
+    }
+  ],
+  "news": []
+}
