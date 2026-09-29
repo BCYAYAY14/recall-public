@@ -15,6 +15,16 @@
       "category": "education",
       "versions": [
         {
+          "version": "0.13.12",
+          "buildVersion": "56",
+          "date": "2026-09-29T02:28:18Z",
+          "localizedDescription": "0.13.12 (56): cloudflare-wip at 0c57586 plus 140 uncommitted paths",
+          "downloadURL": "https://github.com/BCYAYAY14/recall-public/releases/download/ipa-0.13.12/Recall-0.13.12.ipa",
+          "size": 14279489,
+          "sha256": "06b4ed7af8355dd4a3ba56b264be89a5f11b9c37cca7410d1fb3d2bf6797bb5f",
+          "minOSVersion": "17.0"
+        },
+        {
           "version": "0.13.11",
           "buildVersion": "55",
           "date": "2026-09-28T23:27:37Z",
@@ -143,11 +153,11 @@
           "NSCameraUsageDescription": "Recall reads a page you scan into a doc."
         }
       },
-      "version": "0.13.11",
-      "versionDate": "2026-09-28T23:27:37Z",
-      "versionDescription": "0.13.11 (55): cloudflare-wip at d2cc9d4 plus 263 uncommitted paths",
-      "downloadURL": "https://github.com/BCYAYAY14/recall-public/releases/download/ipa-0.13.11/Recall-0.13.11.ipa",
-      "size": 14159866
+      "version": "0.13.12",
+      "versionDate": "2026-09-29T02:28:18Z",
+      "versionDescription": "0.13.12 (56): cloudflare-wip at 0c57586 plus 140 uncommitted paths",
+      "downloadURL": "https://github.com/BCYAYAY14/recall-public/releases/download/ipa-0.13.12/Recall-0.13.12.ipa",
+      "size": 14279489
     },
     {
       "name": "Recall CF8",
