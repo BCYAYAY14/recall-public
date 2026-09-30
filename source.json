@@ -15,6 +15,16 @@
       "category": "education",
       "versions": [
         {
+          "version": "0.13.14",
+          "buildVersion": "58",
+          "date": "2026-09-30T17:51:19Z",
+          "localizedDescription": "0.13.14 (58): cloudflare-wip at 0c57586 plus 377 uncommitted paths",
+          "downloadURL": "https://github.com/BCYAYAY14/recall-public/releases/download/ipa-0.13.14/Recall-0.13.14.ipa",
+          "size": 17777756,
+          "sha256": "b8032eaa447c1644a4a4605eff8a59254e19fa740a37afc66263b90bf89aa96f",
+          "minOSVersion": "17.0"
+        },
+        {
           "version": "0.13.13",
           "buildVersion": "57",
           "date": "2026-09-29T02:50:32Z",
@@ -160,14 +170,15 @@
           "com.apple.security.application-groups"
         ],
         "privacy": {
-          "NSCameraUsageDescription": "Recall reads a page you scan into a doc."
+          "NSCameraUsageDescription": "Recall reads a page you scan into a doc.",
+          "NSMotionUsageDescription": "Recall takes a nod or a shake of your AirPods as a grade while it reads your cards aloud."
         }
       },
-      "version": "0.13.13",
-      "versionDate": "2026-09-29T02:50:32Z",
-      "versionDescription": "0.13.13 (57): cloudflare-wip at 0c57586 plus 139 uncommitted paths",
-      "downloadURL": "https://github.com/BCYAYAY14/recall-public/releases/download/ipa-0.13.13/Recall-0.13.13.ipa",
-      "size": 14285298
+      "version": "0.13.14",
+      "versionDate": "2026-09-30T17:51:19Z",
+      "versionDescription": "0.13.14 (58): cloudflare-wip at 0c57586 plus 377 uncommitted paths",
+      "downloadURL": "https://github.com/BCYAYAY14/recall-public/releases/download/ipa-0.13.14/Recall-0.13.14.ipa",
+      "size": 17777756
     },
     {
       "name": "Recall CF8",
