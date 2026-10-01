@@ -15,6 +15,16 @@
       "category": "education",
       "versions": [
         {
+          "version": "0.14.1",
+          "buildVersion": "62",
+          "date": "2026-10-01T07:52:09Z",
+          "localizedDescription": "0.14.1 (62): cloudflare-wip at 05f5d54 plus 12 uncommitted paths",
+          "downloadURL": "https://github.com/BCYAYAY14/recall-public/releases/download/ipa-0.14.1/Recall-0.14.1.ipa",
+          "size": 18792073,
+          "sha256": "823c2174e85752814d67ce09cb0c54e466f30613f14d4ab06fd1a9d85b917264",
+          "minOSVersion": "17.0"
+        },
+        {
           "version": "0.13.16",
           "buildVersion": "60",
           "date": "2026-10-01T03:39:20Z",
@@ -194,11 +204,11 @@
           "NSMotionUsageDescription": "Recall takes a nod or a shake of your AirPods as a grade while it reads your cards aloud."
         }
       },
-      "version": "0.13.16",
-      "versionDate": "2026-10-01T03:39:20Z",
-      "versionDescription": "0.13.16 (60): cloudflare-wip at 0c57586 plus 404 uncommitted paths",
-      "downloadURL": "https://github.com/BCYAYAY14/recall-public/releases/download/ipa-0.13.16/Recall-0.13.16.ipa",
-      "size": 18172107
+      "version": "0.14.1",
+      "versionDate": "2026-10-01T07:52:09Z",
+      "versionDescription": "0.14.1 (62): cloudflare-wip at 05f5d54 plus 12 uncommitted paths",
+      "downloadURL": "https://github.com/BCYAYAY14/recall-public/releases/download/ipa-0.14.1/Recall-0.14.1.ipa",
+      "size": 18792073
     },
     {
       "name": "Recall CF8",
