@@ -15,6 +15,16 @@
       "category": "education",
       "versions": [
         {
+          "version": "0.15.2",
+          "buildVersion": "64",
+          "date": "2026-10-03T02:11:42Z",
+          "localizedDescription": "0.15.2 (64): cloudflare-wip at a52745e plus the uncommitted working tree. Indicators, KaTeX fonts and the current MCP proposal improvements.",
+          "downloadURL": "https://github.com/BCYAYAY14/recall-public/releases/download/ipa-0.15.2/Recall-0.15.2.ipa",
+          "size": 19542355,
+          "sha256": "d5abcb05fa16ff1469af4a2c745a5c76b06ff1b86a0c01f6b8d111ae13882c71",
+          "minOSVersion": "17.0"
+        },
+        {
           "version": "0.15.1",
           "buildVersion": "63",
           "date": "2026-10-02T03:19:56Z",
@@ -214,11 +224,11 @@
           "NSMotionUsageDescription": "Recall takes a nod or a shake of your AirPods as a grade while it reads your cards aloud."
         }
       },
-      "version": "0.15.1",
-      "versionDate": "2026-10-02T03:19:56Z",
-      "versionDescription": "0.15.1 (63): main at 1156249",
-      "downloadURL": "https://github.com/BCYAYAY14/recall-public/releases/download/ipa-0.15.1/Recall-0.15.1.ipa",
-      "size": 19059496
+      "version": "0.15.2",
+      "versionDate": "2026-10-03T02:11:42Z",
+      "versionDescription": "0.15.2 (64): cloudflare-wip at a52745e plus the uncommitted working tree. Indicators, KaTeX fonts and the current MCP proposal improvements.",
+      "downloadURL": "https://github.com/BCYAYAY14/recall-public/releases/download/ipa-0.15.2/Recall-0.15.2.ipa",
+      "size": 19542355
     },
     {
       "name": "Recall CF8",
