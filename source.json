@@ -15,6 +15,16 @@
       "category": "education",
       "versions": [
         {
+          "version": "0.15.3",
+          "buildVersion": "65",
+          "date": "2026-10-04T07:30:53Z",
+          "localizedDescription": "Study stays fixed across Notes/Cards with Anchored fade, including large documents. Also includes the approved motion, AI proposal, larger-text screen and navy icon improvements. Version 0.15.3 (65) on both platforms.",
+          "downloadURL": "https://github.com/BCYAYAY14/recall-public/releases/download/ipa-0.15.3/Recall-0.15.3.ipa",
+          "size": 19602216,
+          "sha256": "667d28d14d8c8ecd060605eb8e1b8a9e6881fd7a4318da39ea4e77b58951e684",
+          "minOSVersion": "17.0"
+        },
+        {
           "version": "0.15.2",
           "buildVersion": "64",
           "date": "2026-10-03T02:11:42Z",
@@ -224,11 +234,11 @@
           "NSMotionUsageDescription": "Recall takes a nod or a shake of your AirPods as a grade while it reads your cards aloud."
         }
       },
-      "version": "0.15.2",
-      "versionDate": "2026-10-03T02:11:42Z",
-      "versionDescription": "0.15.2 (64): cloudflare-wip at a52745e plus the uncommitted working tree. Indicators, KaTeX fonts and the current MCP proposal improvements.",
-      "downloadURL": "https://github.com/BCYAYAY14/recall-public/releases/download/ipa-0.15.2/Recall-0.15.2.ipa",
-      "size": 19542355
+      "version": "0.15.3",
+      "versionDate": "2026-10-04T07:30:53Z",
+      "versionDescription": "Study stays fixed across Notes/Cards with Anchored fade, including large documents. Also includes the approved motion, AI proposal, larger-text screen and navy icon improvements. Version 0.15.3 (65) on both platforms.",
+      "downloadURL": "https://github.com/BCYAYAY14/recall-public/releases/download/ipa-0.15.3/Recall-0.15.3.ipa",
+      "size": 19602216
     },
     {
       "name": "Recall CF8",
