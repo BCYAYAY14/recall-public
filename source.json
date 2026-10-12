@@ -15,6 +15,16 @@
       "category": "education",
       "versions": [
         {
+          "version": "0.16.1",
+          "buildVersion": "67",
+          "date": "2026-10-12T02:40:04Z",
+          "localizedDescription": "0.16.1 (67): main at 7314190 plus 11 uncommitted paths",
+          "downloadURL": "https://github.com/BCYAYAY14/recall-public/releases/download/ipa-0.16.1/Recall-0.16.1.ipa",
+          "size": 24483019,
+          "sha256": "39e674c82ebc03f46719486a65d1f01da93352b6e3b6b838f6b354c5c05cecc1",
+          "minOSVersion": "17.0"
+        },
+        {
           "version": "0.15.3",
           "buildVersion": "65",
           "date": "2026-10-04T07:30:53Z",
@@ -234,11 +244,11 @@
           "NSMotionUsageDescription": "Recall takes a nod or a shake of your AirPods as a grade while it reads your cards aloud."
         }
       },
-      "version": "0.15.3",
-      "versionDate": "2026-10-04T07:30:53Z",
-      "versionDescription": "Study stays fixed across Notes/Cards with Anchored fade, including large documents. Also includes the approved motion, AI proposal, larger-text screen and navy icon improvements. Version 0.15.3 (65) on both platforms.",
-      "downloadURL": "https://github.com/BCYAYAY14/recall-public/releases/download/ipa-0.15.3/Recall-0.15.3.ipa",
-      "size": 19602216
+      "version": "0.16.1",
+      "versionDate": "2026-10-12T02:40:04Z",
+      "versionDescription": "0.16.1 (67): main at 7314190 plus 11 uncommitted paths",
+      "downloadURL": "https://github.com/BCYAYAY14/recall-public/releases/download/ipa-0.16.1/Recall-0.16.1.ipa",
+      "size": 24483019
     },
     {
       "name": "Recall CF8",
